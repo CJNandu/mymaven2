@@ -1,15 +1,13 @@
-<<<<<<< HEAD
-=======
-pipeline
+pipeline 
 {
     agent any
     stages
-    {
+    { 
         stage('ContinuousDownload')
         {
             steps
             {
-                git 'https://github.com/CJNandu/mymaven.git'
+                git 'https://github.com/CJNandu/mymaven2.git'
             }
         }
         stage('ContinuousBuild')
@@ -20,31 +18,28 @@ pipeline
             }
         }
         stage('ContinuousDeployment')
->>>>>>> 595c27a38be36d82c5b012219e3e0078c42094d1
         {
             steps
             {
-                deploy adapters: [tomcat9(credentialsId: 'c3555c92-49ab-4488-b2ec-989877cbc85a', path: '', url: 'http://172.31.38.53:8080')], contextPath: 'testapp10', war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'c3555c92-49ab-4488-b2ec-989877cbc85a', path: '', url: 'http://172.31.38.53:8080')], contextPath: 'testapp1000', war: '**/*.war'
             }
-        } 
+        }
         stage('ContinuousTesting')
         {
             steps
             {
                 git 'https://github.com/intelliqittrainings/FunctionalTesting.git'
-                sh 'java -jar /home/ubuntu/.jenkins/workspace/declarativepipeline/testing.jar'
+                sh 'java -jar /home/ubuntu/.jenkins/workspace/Declarativepipeline3/testing.jar'
             }
         }
         stage('ContinuousDelivery')
         {
             steps
             {
-                deploy adapters: [tomcat9(credentialsId: 'c3555c92-49ab-4488-b2ec-989877cbc85a', path: '', url: 'http://172.31.36.252:8080')], contextPath: 'prodapp10', war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'c3555c92-49ab-4488-b2ec-989877cbc85a', path: '', url: 'http://172.31.36.252:8080')], contextPath: 'prod2', war: '**/*.war'
             }
         }
+        
     }
+    
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 595c27a38be36d82c5b012219e3e0078c42094d1
